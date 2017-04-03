@@ -1,6 +1,8 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.concurrent.WorkerStateEvent;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -34,13 +36,15 @@ public class Controller {
             }
         });
         new Thread(task).start();
+
      //   drawShapes(gc);
     }
     @FXML
     private void handleStopBtnAction(){
-       task.cancel();
+        task.cancel();
         //   drawShapes(gc);
     }
+
  /*   private void drawShapes(GraphicsContext gc) {
         gc.setFill(Color.BLUEVIOLET);
         gc.fillRect(gc.getCanvas().getLayoutX(),

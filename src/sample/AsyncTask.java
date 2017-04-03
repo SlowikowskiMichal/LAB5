@@ -13,7 +13,7 @@ public class AsyncTask extends Task {
 
     private Canvas canvas;
     private GraphicsContext gc;
-    PixelWriter pixelWriter;
+    private PixelWriter pixelWriter;
 
     public AsyncTask(GraphicsContext gcc, Canvas canvass) {
         gc = gcc;
@@ -36,7 +36,6 @@ public class AsyncTask extends Task {
         for(int i = 0; i < canvas.getWidth();i++)
             for(int j = 1; j < canvas.getHeight(); j+=10)
                 pixelWriter.setColor(i, j, Color.YELLOW);
-
         while (true)
         {
             System.out.println(".");

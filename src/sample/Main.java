@@ -15,7 +15,11 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
-
+    @Override
+    public void stop(){
+        System.out.println("Stage is closing");
+        System.exit(0);
+    }
 
     public static void main(String[] args) {
         launch(args);
