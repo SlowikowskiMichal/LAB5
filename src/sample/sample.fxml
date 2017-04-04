@@ -13,7 +13,7 @@
 
         <Button layoutX="472.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleRunBtnAction" text="START" />
       <Button layoutX="471.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleStopBtnAction" prefHeight="25.0" prefWidth="50.0" text="STOP" />
-        <TextField layoutX="423.0" layoutY="169.0" />
+        <TextField fx:id="textField" layoutX="423.0" layoutY="169.0" promptText="0" text="0" />
         <Label layoutX="424.0" layoutY="144.0" prefHeight="25.0" prefWidth="102.0" text="ILOŚĆ PUNKTÓW" />
         <Label layoutX="423.0" layoutY="220.0" prefHeight="26.0" prefWidth="102.0" text="WYNIK" />
         <Label layoutX="424.0" layoutY="246.0" prefHeight="52.0" prefWidth="149.0" />
