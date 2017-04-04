@@ -7,41 +7,61 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.paint.Color;
 
-//import java.awt.Color;
-//import java.awt.image.BufferedImage;
+import java.util.concurrent.TimeUnit;
 
 public class Controller {
 
     private AsyncTask task;
 
     @FXML
+    private ProgressBar progressBar;
+    @FXML
+    TextField textField;
+    @FXML
     private Canvas canvas;
     @FXML
-    private void handleRunBtnAction(){
+    private void handleRunBtnAction() {
+
+        int count = Integer.parseInt(textField.getText());
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        task = new AsyncTask(gc,canvas);
+
+        task = new AsyncTask(gc,canvas,count,progressBar);
+
+        progressBar.progressProperty().bind(task.progressProperty());
+
+
+        //==============================================================================================================
+
         task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent event) {
-                canvas = (Canvas)task.getValue();
+                System.out.println((String) task.getValue());
             }
         });
+
         task.setOnCancelled(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent event) {
                 System.out.println("Przerwałem");
             }
         });
+
+        //==============================================================================================================
+
         new Thread(task).start();
 
      //   drawShapes(gc);
     }
     @FXML
     private void handleStopBtnAction(){
-        task.cancel();
+        if(!task.isCancelled())
+            task.cancel();
         //   drawShapes(gc);
     }
 
